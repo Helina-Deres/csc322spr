@@ -1,0 +1,82 @@
+// import THREE
+import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
+
+// import Orbit controls
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+
+// Create scence & camera
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+// Create Renderer
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+camera.position.z = 5;
+
+
+
+
+	renderer.render( scene, camera );
+  
+  
+renderer.setAnimationLoop( animate );
+
+cube.rotation.x += 0.01;
+cube.rotation.y += 0.01;
+
+const verticesOfCube = [
+    -1,-1,-1,    1,-1,-1,    1, 1,-1,    -1, 1,-1,
+    -1,-1, 1,    1,-1, 1,    1, 1, 1,    -1, 1, 1,
+];
+
+const indicesOfFaces = [
+    2,1,0,    0,3,2,
+    0,4,7,    7,3,0,
+    0,1,5,    5,4,0,
+    1,2,6,    6,5,1,
+    2,3,7,    7,6,2,
+    4,5,6,    6,7,4
+];
+
+// Render the scene
+renderer.render(scene, camera);
+
+animate(); 
+
+
+
+//// polyhedron
+const polyhedronGeometry = new THREE.PolyhedronGeometry( vecticesOfCube, indicesOfFaces, 6, 4 );
+const polyhedronMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const polyhedron = new THREE.Mesh( polyhedronGeometry, polyhedronMaterial );
+scene.add( polyhedron );
+
+camera.position.z = 5;
+
+function animate() {
+	renderer.render( scene, camera );
+}
+renderer.setAnimationLoop( animate );
+
+polyhedron.rotation.x += 0.01;
+polyhedron.rotation.y += 0.01;
+
+
+// Render the scene
+renderer.render(scene, camera);
+
+
+// Start animation loop
+renderer.setAnimationLoop( animate );
+
+animate();
+var controls = new OrbitControls(camera, renderer.domElement);
+
+animate();
