@@ -13,7 +13,8 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+// Size of shape
+const geometry = new THREE.BoxGeometry( .5, 3, .5 );
 const material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
@@ -28,17 +29,18 @@ cube.rotation.x += 10.0;
 cube.rotation.y += 10.0;
 
 const verticesOfCube = [
-    -1,-1,-1,    1,-1,-1,    1, 1,-1,    -1, 1,-1,
+   	-1,-1,-1,    1,-1,-1,    1, 1,-1,    -1, 1,-1,
     -1,-1, 1,    1,-1, 1,    1, 1, 1,    -1, 1, 1,
 ];
 
 const indicesOfFaces = [
-    2,1,0,    0,3,2,
+   	2,1,0,    0,3,2,
     0,4,7,    7,3,0,
     0,1,5,    5,4,0,
     1,2,6,    6,5,1,
     2,3,7,    7,6,2,
     4,5,6,    6,7,4
+
 ];
 
 // Render the scene
@@ -67,11 +69,25 @@ polyhedron.rotation.y += 0.01;
 // Render the scene
 renderer.render(scene, camera);
 
+/*
+const point[];
+point.push();*/
 
 // Start animation loop
 renderer.setAnimationLoop( animate );
 
-animate();
 var controls = new OrbitControls(camera, renderer.domElement);
 
 animate();
+
+
+
+//// Pyramidion
+const coneGeometry = new THREE.ConeGeometry( 5, 20, 32 ); 
+const coneMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+const cone = new THREE.Mesh(geometry, material ); scene.add( cone );
+scene.add( cone );
+
+cone.rotation.x += 10; 
+cone.rotation.y += 10; 
+
