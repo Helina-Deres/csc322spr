@@ -16,18 +16,29 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-// Size of shape
-//const geometry = new THREE.BoxGeometry( 1, 2, 1 );
-//const material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
-//const line = new THREE.Mesh( geometry, material );
-//scene.add( line ); 
+const geometry = new THREE.BufferGeometry();
+
+// create a simple square shape. We duplicate the top left and bottom right
+// vertices because each vertex needs to appear once per triangle.
+const vertices = new Float32Array( [
+	-1.0, -1.0,  1.0, // v0
+	 1.0, -1.0,  1.0, // v1
+	 1.0,  1.0,  1.0, // v2
+
+	 1.0,  1.0,  1.0, // v3
+	-1.0,  1.0,  1.0, // v4
+	-1.0, -1.0,  1.0  // v5
+] );
+
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+const mesh = new THREE.Mesh( geometry, material );
 
 //create a blue LineBasicMaterial
-const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+const material1 = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 
 const point1 = [];
-const point2 = [];
-const point3 = [];
 
 // Side 1 (rectangle)
 point1.push(new THREE.Vector3(-27, 500, 27));
@@ -41,7 +52,7 @@ point1.push(new THREE.Vector3(27, 0, 27));
 point1.push(new THREE.Vector3(-27, 500, 27));
 
 
-// side 2
+// side 2 (rectangle)
 point1.push(new THREE.Vector3(27, 500, -27));
 point1.push(new THREE.Vector3(-27, 0, -27));
 point1.push(new THREE.Vector3(27, 0, -27));
@@ -53,15 +64,13 @@ point1.push(new THREE.Vector3(-27, 0, -27));
 point1.push(new THREE.Vector3(27, 500, -27));
 
 
-
-
 /*
 point1.push(new THREE.Vector3(-17, 500, -17)); 
 point1.push(new THREE.Vector3(17, 500, 17)); 
 point1.push(new THREE.Vector3(-17, 0, -17)); 
 point1.push(new THREE.Vector3(17, 0, 17)); */
 
-const geometry = new THREE.BufferGeometry().setFromPoints( point1 );
+const geometry1 = new THREE.BufferGeometry().setFromPoints( point1 );
 
 const line = new THREE.Line( geometry, material );
 
