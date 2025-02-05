@@ -1,29 +1,82 @@
 // import THREE
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
 
+// import Orbit controls
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+
+// Create scene & camera
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+camera.position.set( 0, 0, 500 );
+camera.lookAt( 0, 0, 0 );
+//window.innerHeight, 0.1, 1000 );
+
+// Create Renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
-camera.position.set( 0, 0, 100 );
-camera.lookAt( 0, 0, 0 );
-
-const scene = new THREE.Scene();
+// Size of shape
+//const geometry = new THREE.BoxGeometry( 1, 2, 1 );
+//const material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+//const line = new THREE.Mesh( geometry, material );
+//scene.add( line ); 
 
 //create a blue LineBasicMaterial
 const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 
-const points = [];
-points.push( new THREE.Vector3( - 10, 0, 0 ) );
-points.push( new THREE.Vector3( 0, 10, 0 ) );
-points.push( new THREE.Vector3( 10, 0, 0 ) );
-points.push( new THREE.Vector3( 0, 0, 10 ) );
-points.push( new THREE.Vector3( -10, 0, 0 ) );
+const point1 = [];
+const point2 = [];
+const point3 = [];
 
-const geometry = new THREE.BufferGeometry().setFromPoints( points );
+point1.push(new THREE.Vector3(-27, 500, 27));
+point1.push(new THREE.Vector3(27, 0, 27));
+point1.push(new THREE.Vector3(-27, 0, 27));
+point1.push(new THREE.Vector3(-27, 500, 27));
+
+point1.push(new THREE.Vector3(-27, 500, 27));
+point1.push(new THREE.Vector3(27, 500, 27)); 
+point1.push(new THREE.Vector3(27, 0, 27));
+point1.push(new THREE.Vector3(-27, 500, 27));
+
+
+point1.push(new THREE.Vector3(-55, 55, -500)); 
+point1.push(new THREE.Vector3(55, 55, 500)); 
+point1.push(new THREE.Vector3(-55, 0, -500)); 
+point1.push(new THREE.Vector3(55, 0, 500)); 
+
+const geometry = new THREE.BufferGeometry().setFromPoints( point1 );
 
 const line = new THREE.Line( geometry, material );
 
 scene.add( line );
 renderer.render( scene, camera );
+
+
+//// polyhedron
+//const polyhedronGeometry = new THREE.PolyhedronGeometry( vecticesOfCube, indicesOfFaces, 6, 4 );
+//const polyhedronMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+//const polyhedron = new THREE.Mesh( polyhedronGeometry, polyhedronMaterial );
+
+//scene.add( polyhedron );
+
+camera.position.z = 5;
+/*
+function animate() {
+	requestAnimationFrame( animate );
+	//renderer.render( scene, camera );
+  
+  //polyhedron.rotation.x += 0.01;
+	//polyhedron.rotation.y += 0.01;
+  
+  // Render the scene
+	renderer.render(scene, camera);
+}*/
+
+
+// Start animation loop
+//renderer.setAnimationLoop( animate );
+
+//var controls = new OrbitControls(camera, renderer.domElement);
+
+//animate();
