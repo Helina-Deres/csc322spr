@@ -17,6 +17,9 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 const geometry = new THREE.BufferGeometry();
+const geometry1 = new THREE.BufferGeometry();
+const geometry2 = new THREE.BufferGeometry();
+const geometry3 = new THREE.BufferGeometry();
 
 // create a simple square shape. We duplicate the top left and bottom right
 // vertices because each vertex needs to appear once per triangle.
@@ -28,80 +31,85 @@ const vertices = new Float32Array( [
 	 1.0,  1.0,  1.0, // v3
 	-1.0,  1.0,  1.0, // v4
 	-1.0, -1.0,  1.0  // v5
+] ); 
+//Converting your values
+// y -> -1 = 0 +1 = 500
+// x & z -> -1 = -27 +1 = 27
+// after coverting all of that for all y value equal to 500 change -27 to -17 and change 27 to 17
+
+const vertices1 = new Float32Array( [
+	-1.0, -1.0,  -1.0, // v0
+	 1.0, -1.0,  -1.0, // v1
+	 1.0,  1.0,  -1.0, // v2
+   
+	 1.0,  1.0,  -1.0, // v3
+	-1.0,  1.0,  -1.0, // v4
+	-1.0, -1.0,  -1.0  // v5
+] ); 
+
+const vertices2 = new Float32Array( [
+	-1.0, -1.0,  1.0, // v0
+	-1.0, -1.0,  -1.0, // v1
+	-1.0,  1.0,  -1.0, // v2
+   
+	-1.0,  1.0,  -1.0, // v3
+	 -1.0, 1.0, 1.0, // v4
+  -1.0, -1.0,  1.0  // v5
 ] );
 
+const vertices3 = new Float32Array( [
+  1.0, -1.0,  1.0, // v0
+  1.0, -1.0, -1.0, // v1
+  1.0,  1.0, -1.0, // v2
+   
+  1.0,  1.0, -1.0, // v3
+  1.0,  1.0,  1.0, // v4
+  1.0, -1.0,  1.0  // v5
+] );
+
+// square 1
 // itemSize = 3 because there are 3 values (components) per vertex
 geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 const mesh = new THREE.Mesh( geometry, material );
+material.side = THREE.BackSize;
 
-//create a blue LineBasicMaterial
-const material1 = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+//square 2
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry1.setAttribute( 'position', new THREE.BufferAttribute( vertices1, 3 ) );
+const material1 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
+const mesh1 = new THREE.Mesh( geometry1, material1 );
+material1.side = THREE.BackSide;
+
+//square 3
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry2.setAttribute( 'position', new THREE.BufferAttribute( vertices2, 3 ) );
+const material2 = new THREE.MeshBasicMaterial( { color: 0x00ff00} );
+const mesh2 = new THREE.Mesh( geometry2, material2 );
+material2.side = THREE.BackSide;
+
+//square 4
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry3.setAttribute( 'position', new THREE.BufferAttribute( vertices3, 3 ) );
+const material3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
+const mesh3 = new THREE.Mesh( geometry3, material3 );
 
 const point1 = [];
 
-// Side 1 (rectangle)
-point1.push(new THREE.Vector3(-27, 500, 27));
-point1.push(new THREE.Vector3(27, 0, 27));
-point1.push(new THREE.Vector3(-27, 0, 27));
-point1.push(new THREE.Vector3(-27, 500, 27));
-
-point1.push(new THREE.Vector3(-27, 500, 27));
-point1.push(new THREE.Vector3(27, 500, 27)); 
-point1.push(new THREE.Vector3(27, 0, 27));
-point1.push(new THREE.Vector3(-27, 500, 27));
-
-
-// side 2 (rectangle)
-point1.push(new THREE.Vector3(27, 500, -27));
-point1.push(new THREE.Vector3(-27, 0, -27));
-point1.push(new THREE.Vector3(27, 0, -27));
-point1.push(new THREE.Vector3(27, 500, -27));
-
-point1.push(new THREE.Vector3(27, 500, -27));
-point1.push(new THREE.Vector3(-27, 500, -27)); 
-point1.push(new THREE.Vector3(-27, 0, -27));
-point1.push(new THREE.Vector3(27, 500, -27));
-
-
-/*
-point1.push(new THREE.Vector3(-17, 500, -17)); 
-point1.push(new THREE.Vector3(17, 500, 17)); 
-point1.push(new THREE.Vector3(-17, 0, -17)); 
-point1.push(new THREE.Vector3(17, 0, 17)); */
-
-const geometry1 = new THREE.BufferGeometry().setFromPoints( point1 );
-
-const line = new THREE.Line( geometry, material );
-
-scene.add( line );
-renderer.render( scene, camera );
-
-
-//// polyhedron
-//const polyhedronGeometry = new THREE.PolyhedronGeometry( vecticesOfCube, indicesOfFaces, 6, 4 );
-//const polyhedronMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-//const polyhedron = new THREE.Mesh( polyhedronGeometry, polyhedronMaterial );
-
-//scene.add( polyhedron );
-
-
+renderer.render(scene, camera);
 
 function animate() {
-	requestAnimationFrame( animate );
-	//renderer.render( scene, camera );
+	requestAnimationFrame( animate )
+  scene.add(mesh); 
+  scene.add(mesh1);
+	scene.add(mesh2);
+  scene.add(mesh3);
   
-  //polyhedron.rotation.x += 0.01;
-	//polyhedron.rotation.y += 0.01;
-  
-  // Render the scene
 	renderer.render(scene, camera);
 }
 
 
 // Start animation loop
-//renderer.setAnimationLoop( animate );
-
 var controls = new OrbitControls(camera, renderer.domElement);
 
 animate();
