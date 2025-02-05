@@ -17,16 +17,9 @@ document.body.appendChild( renderer.domElement );
 const geometry = new THREE.BoxGeometry( 1, 2, 1 );
 const material = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+scene.add( cube ); 
 
-camera.position.z = 5;
-
-renderer.render( scene, camera );
-  
-renderer.setAnimationLoop( animate );
-
-cube.rotation.x += 10.0;
-cube.rotation.y += 10.0;
+//camera.position.z = 5;
 
 const verticesOfCube = [
    	-1,-1,-1,    1,-1,-1,    1, 1,-1,    -1, 1,-1,
@@ -43,38 +36,33 @@ const indicesOfFaces = [
 
 ];
 
-// Render the scene
-renderer.render(scene, camera);
-
-animate(); 
-
-
-
 //// polyhedron
 const polyhedronGeometry = new THREE.PolyhedronGeometry( vecticesOfCube, indicesOfFaces, 6, 4 );
 const polyhedronMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 const polyhedron = new THREE.Mesh( polyhedronGeometry, polyhedronMaterial );
+
 scene.add( polyhedron );
 
 camera.position.z = 5;
 
 function animate() {
-	renderer.render( scene, camera );
+	requestAnimationFrame( animate );
+	//renderer.render( scene, camera );
+  
+  //polyhedron.rotation.x += 0.01;
+	polyhedron.rotation.y += 0.01;
+  
+  // Render the scene
+	renderer.render(scene, camera);
 }
-renderer.setAnimationLoop( animate );
+//renderer.setAnimationLoop( animate );
 
-polyhedron.rotation.x += 0.01;
-polyhedron.rotation.y += 0.01;
 
-// Render the scene
-renderer.render(scene, camera);
-
-/*
-const point[];
-point.push();*/
+//const point = [];
+//point.push(new THREE.vector3(-27, 0, -27));
 
 // Start animation loop
-renderer.setAnimationLoop( animate );
+//renderer.setAnimationLoop( animate );
 
 var controls = new OrbitControls(camera, renderer.domElement);
 
