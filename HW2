@@ -1,0 +1,92 @@
+// import THREE
+import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
+
+// import Orbit controls
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+
+// Create scene & camera
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 800 );
+camera.position.set( 0, 0, 7 );
+camera.lookAt( 0, 0, 0 );
+//window.innerHeight, 0.1, 1000 );
+
+// Create Renderer
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+const geometry = new THREE.BufferGeometry();
+const geometry1 = new THREE.BufferGeometry();
+/////////////////////const geometry2 = new THREE.BufferGeometry();
+
+// create a simple square shape. We duplicate the top left and bottom right
+// vertices because each vertex needs to appear once per triangle.
+const vertices = new Float32Array( [
+	-1.0, -1.0,  1.0, // v0
+	 1.0, -1.0,  1.0, // v1
+	 1.0,  1.0,  1.0, // v2
+
+	 1.0,  1.0,  1.0, // v3
+	-1.0,  1.0,  1.0, // v4
+	-1.0, -1.0,  1.0  // v5
+] );
+
+const vertices1 = new Float32Array( [
+	-1.0, -1.0,  -1.0, // v0
+	 1.0, -1.0,  -1.0, // v1
+	 1.0,  1.0,  -1.0, // v2
+	 1.0,  1.0,  -1.0, // v3
+	-1.0,  1.0,  -1.0, // v4
+	-1.0, -1.0,  -1.0  // v5
+] 
+/*
+const vertices2 = new Float32Array( [
+	-1.0, -1.0,  -1.0, // v0
+	 1.0, -1.0,  -1.0, // v1
+	 1.0,  1.0,  -1.0, // v2
+	 1.0,  1.0,  -1.0, // v3
+	-1.0,  1.0,  -1.0, // v4
+	-1.0, -1.0,  -1.0  // v5
+] );*/
+
+// square 1
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+const mesh = new THREE.Mesh( geometry, material );
+material.side = THREE.BackSize;
+
+//square 2
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry1.setAttribute( 'position', new THREE.BufferAttribute( vertices1, 3 ) );
+const material1 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
+const mesh1 = new THREE.Mesh( geometry1, material1 );
+material1.side = THREE.BackSize;
+
+/*
+//square 3
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry1.setAttribute( 'position', new THREE.BufferAttribute( vertices2, 3 ) );
+const material2 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
+const mesh2 = new THREE.Mesh( geometry1, material1 );
+material2.side = THREE.BackSize;*/
+
+const point1 = [];
+
+renderer.render(scene, camera);
+
+function animate() {
+	requestAnimationFrame( animate )
+  scene.add(mesh); 
+  scene.add(mesh1);
+ // scence.add(mesh2);
+  
+	renderer.render(scene, camera);
+}
+
+
+// Start animation loop
+var controls = new OrbitControls(camera, renderer.domElement);
+
+animate();
