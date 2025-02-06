@@ -24,13 +24,13 @@ const geometry3 = new THREE.BufferGeometry();
 // create a simple square shape. We duplicate the top left and bottom right
 // vertices because each vertex needs to appear once per triangle.
 const vertices = new Float32Array( [
-	-1.0, -1.0,  1.0, // v0
-	 1.0, -1.0,  1.0, // v1
-	 1.0,  1.0,  1.0, // v2
+	-27, 0, 27, // v0
+	 27, 0 , 27, // v1
+	 27,  500 , 27, // v2
 
-	 1.0,  1.0,  1.0, // v3
-	-1.0,  1.0,  1.0, // v4
-	-1.0, -1.0,  1.0  // v5
+	 27,  500,  27, // v3
+	-27,  500 , 27, // v4
+	-27, 0, 27  // v5
 ] ); 
 //Converting your values
 // y -> -1 = 0 +1 = 500
@@ -38,33 +38,36 @@ const vertices = new Float32Array( [
 // after coverting all of that for all y value equal to 500 change -27 to -17 and change 27 to 17
 
 const vertices1 = new Float32Array( [
-	-1.0, -1.0,  -1.0, // v0
-	 1.0, -1.0,  -1.0, // v1
-	 1.0,  1.0,  -1.0, // v2
+	-27, 0,  -27, // v0
+	 27, 0,  -27, // v1
+	 27,  500,   -27, // v2
    
-	 1.0,  1.0,  -1.0, // v3
-	-1.0,  1.0,  -1.0, // v4
-	-1.0, -1.0,  -1.0  // v5
+	 27,  500,   -27, // v3
+	-27,  500,   -27, // v4
+	-27, 0,  -27  // v5
+
 ] ); 
 
 const vertices2 = new Float32Array( [
-	-1.0, -1.0,  1.0, // v0
-	-1.0, -1.0,  -1.0, // v1
-	-1.0,  1.0,  -1.0, // v2
+	-27, 0,  27, // v0
+	-27, 0,  -27, // v1
+	-27,  500,  -27, // v2
    
-	-1.0,  1.0,  -1.0, // v3
-	 -1.0, 1.0, 1.0, // v4
-  -1.0, -1.0,  1.0  // v5
+	-27,  500,  -27, // v3
+	 -27, 500, 27, // v4
+  -27, 0,  27  // v5
+
 ] );
 
 const vertices3 = new Float32Array( [
-  1.0, -1.0,  1.0, // v0
-  1.0, -1.0, -1.0, // v1
-  1.0,  1.0, -1.0, // v2
+  27, 0,  27, // v0
+  27, 0, -27, // v1
+  27,  500, -27, // v2
    
-  1.0,  1.0, -1.0, // v3
-  1.0,  1.0,  1.0, // v4
-  1.0, -1.0,  1.0  // v5
+  27,  500, -27, // v3
+  27,  500,  27, // v4
+  27, 0,  27  // v5
+
 ] );
 
 // square 1
@@ -116,6 +119,10 @@ function animate() {
   
 	renderer.render(scene, camera);
 }
+
+// Cone
+
+
 
 // Start animation loop
 var controls = new OrbitControls(camera, renderer.domElement);
