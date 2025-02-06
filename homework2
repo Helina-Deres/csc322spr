@@ -94,7 +94,7 @@ geometry3.setAttribute( 'position', new THREE.BufferAttribute( vertices3, 3 ) );
 const material3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
 const mesh3 = new THREE.Mesh( geometry3, material3 );
 
-const point1 = [];
+//const point1 = [];
 
 renderer.render(scene, camera);
 
@@ -105,8 +105,22 @@ function animate() {
 	scene.add(mesh2);
   scene.add(mesh3);
   
+  //mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.01;
+  //mesh1.rotation.x += 0.01;
+  mesh1.rotation.y += 0.01;
+  //mesh2.rotation.x += 0.01;
+  mesh2.rotation.y += 0.01;
+  //mesh3.rotation.x += 0.01;
+  mesh3.rotation.y += 0.01;
+  
 	renderer.render(scene, camera);
 }
+
+// Start animation loop
+var controls = new OrbitControls(camera, renderer.domElement);
+
+animate();
 
 
 // Start animation loop
