@@ -18,37 +18,53 @@ document.body.appendChild( renderer.domElement );
 
 const geometry = new THREE.BufferGeometry();
 const geometry1 = new THREE.BufferGeometry();
-/////////////////////const geometry2 = new THREE.BufferGeometry();
+const geometry2 = new THREE.BufferGeometry();
+const geometry3 = new THREE.BufferGeometry();
 
 // create a simple square shape. We duplicate the top left and bottom right
 // vertices because each vertex needs to appear once per triangle.
 const vertices = new Float32Array( [
-	-1.0, -1.0,  1.0, // v0
-	 1.0, -1.0,  1.0, // v1
-	 1.0,  1.0,  1.0, // v2
+	-27, 0, 27, // v0
+	 27, 0 , 27, // v1
+	 17,  500 , 17, // v2
 
-	 1.0,  1.0,  1.0, // v3
-	-1.0,  1.0,  1.0, // v4
-	-1.0, -1.0,  1.0  // v5
+	 17,  500,  17, // v3
+	-17,  500 , 17, // v4
+	-27, 0, 27  // v5
 ] );
 
 const vertices1 = new Float32Array( [
-	-1.0, -1.0,  -1.0, // v0
-	 1.0, -1.0,  -1.0, // v1
-	 1.0,  1.0,  -1.0, // v2
-	 1.0,  1.0,  -1.0, // v3
-	-1.0,  1.0,  -1.0, // v4
-	-1.0, -1.0,  -1.0  // v5
-] 
-/*
+	-27, 0,  -27, // v0
+	 27, 0,  -27, // v1
+	 17,  500,   -17, // v2
+   
+	 17,  500,   -17, // v3
+	-17,  500,   -17, // v4
+	-27, 0,  -27  // v5
+
+] ); 
+
 const vertices2 = new Float32Array( [
-	-1.0, -1.0,  -1.0, // v0
-	 1.0, -1.0,  -1.0, // v1
-	 1.0,  1.0,  -1.0, // v2
-	 1.0,  1.0,  -1.0, // v3
-	-1.0,  1.0,  -1.0, // v4
-	-1.0, -1.0,  -1.0  // v5
-] );*/
+	-27, 0,  27, // v0
+	-27, 0,  -27, // v1
+	-17,  500,  -17, // v2
+   
+	-17,  500,  -17, // v3
+	 -17, 500, 17, // v4
+  -27, 0,  27  // v5
+
+] );
+
+const vertices3 = new Float32Array( [
+  27, 0,  27, // v0
+  27, 0, -27, // v1
+  17,  500, -17, // v2
+   
+  17,  500, -17, // v3
+  17,  500,  17, // v4
+  27, 0,  27  // v5
+
+] );
 
 // square 1
 // itemSize = 3 because there are 3 values (components) per vertex
@@ -58,32 +74,123 @@ const mesh = new THREE.Mesh( geometry, material );
 material.side = THREE.BackSize;
 
 //square 2
-// itemSize = 3 because there are 3 values (components) per vertex
 geometry1.setAttribute( 'position', new THREE.BufferAttribute( vertices1, 3 ) );
 const material1 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
 const mesh1 = new THREE.Mesh( geometry1, material1 );
-material1.side = THREE.BackSize;
+material1.side = THREE.BackSide;
 
-/*
 //square 3
-// itemSize = 3 because there are 3 values (components) per vertex
-geometry1.setAttribute( 'position', new THREE.BufferAttribute( vertices2, 3 ) );
-const material2 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
-const mesh2 = new THREE.Mesh( geometry1, material1 );
-material2.side = THREE.BackSize;*/
+geometry2.setAttribute( 'position', new THREE.BufferAttribute( vertices2, 3 ) );
+const material2 = new THREE.MeshBasicMaterial( { color: 0x00ff00} );
+const mesh2 = new THREE.Mesh( geometry2, material2 );
+material2.side = THREE.BackSide;
 
-const point1 = [];
+//square 4
+// itemSize = 3 because there are 3 values (components) per vertex
+geometry3.setAttribute( 'position', new THREE.BufferAttribute( vertices3, 3 ) );
+const material3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
+const mesh3 = new THREE.Mesh( geometry3, material3 );
 
 renderer.render(scene, camera);
+
+
+
+// Top of monutment
+const triangle = new THREE.BufferGeometry();
+const triangle2 = new THREE.BufferGeometry();
+const triangle3 = new THREE.BufferGeometry();
+const triangle4 = new THREE.BufferGeometry();
+
+// create a simple square shape. We duplicate the top left and bottom right
+// vertices because each vertex needs to appear once per triangle.
+const triangleVertices1 = new Float32Array( [
+	-17.5,  0, 17.5, // v3
+	17.5,   0,  17.5, // v4
+	0, 55,  0,  // v5
+  0, 1, 0,
+] );
+
+const triangleVertices2 = new Float32Array( [
+	17.5,  0, -17.5, // v3
+	17.5,  0,  17.5, // v4
+	0, 55,  0,  
+  0, 1, 0,
+] );
+
+const triangleVertices3 = new Float32Array( [
+	0, 55,  0,  // v5
+  0, 1, 0,
+  -17.5,  0, 17.5, // v3
+	17.5,   0,  17.5, // v4
+
+] );
+
+const triangleVertices4 = new Float32Array( [
+	0, 55,  0,  // v5
+  0, 1, 0,
+  17.5,  0, -17.5, // v3
+	17.5,  0,  17.5, // v4
+] );
+
+
+
+// itemSize = 3 because there are 3 values (components) per vertex
+triangle.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices1, 3 ) );
+const triangleMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+const triangleMesh = new THREE.Mesh( triangle, triangleMaterial );
+triangleMaterial.side = THREE.BackSide;
+
+triangle2.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices2, 3 ) );
+const triangleMaterial2 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const triangleMesh2 = new THREE.Mesh( triangle2, triangleMaterial2 );
+triangleMaterial2.side = THREE.BackSide;
+
+triangle3.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices3, 3 ) );
+const triangleMaterial3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
+const triangleMesh3 = new THREE.Mesh( triangle3, triangleMaterial3 );
+triangleMaterial3.side = THREE.BackSide;
+
+triangle4.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices4, 3 ) );
+const triangleMaterial4 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
+const triangleMesh4 = new THREE.Mesh( triangle4, triangleMaterial4 );
 
 function animate() {
 	requestAnimationFrame( animate )
   scene.add(mesh); 
   scene.add(mesh1);
- // scence.add(mesh2);
+	scene.add(mesh2);
+  scene.add(mesh3);
+  scene.add(triangleMesh); 
+  scene.add(triangleMesh2); 
+  scene.add(triangleMesh3); 
+  scene.add(triangleMesh4); 
+  
+  mesh.rotation.y += 0.01;
+  mesh1.rotation.y += 0.01;
+  mesh2.rotation.y += 0.01;
+  mesh3.rotation.y += 0.01;
+  
+  
+  triangleMesh.y += 0.01; 
+  triangleMesh2.y += 0.01; 
+  triangleMesh3.y += 0.01; 
+  triangleMesh4.y += 0.01; 
+  
+  triangleMesh.position.set( 2, 500, 0 );
+  triangleMesh2.position.set( 2, 500, 0 );
+  triangleMesh3.position.set( 2, 500, 0 );
+  triangleMesh4.position.set( 2, 500, 0 );
+
   
 	renderer.render(scene, camera);
 }
+
+
+
+// Start animation loop
+var controls = new OrbitControls(camera, renderer.domElement);
+
+animate();
 
 
 // Start animation loop
