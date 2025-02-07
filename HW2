@@ -6,8 +6,8 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/exampl
 
 // Create scene & camera
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 800 );
-camera.position.set( 0, 0, 7 );
+const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 2000 );
+camera.position.set( 0, 0, 555 );
 camera.lookAt( 0, 0, 0 );
 //window.innerHeight, 0.1, 1000 );
 
@@ -103,32 +103,32 @@ const triangle4 = new THREE.BufferGeometry();
 
 // vertices because each vertex needs to appear once per triangle.
 const triangleVertices1 = new Float32Array( [
-	-17.5,  0, 17.5, // v3
-	17.5,   0,  17.5, // v4
-	0, 55,  0,  // v5
-  0, 1, 0,
+	0, 555, 0, 
+	-17, 500, 17,
+  17, 500, 17,
+	//0, 0, 555,
 ] );
 
 const triangleVertices2 = new Float32Array( [
-	17.5,  0, -17.5, // v3
-	17.5,  0,  17.5, // v4
-	0, 55,  0,  
-  0, 1, 0,
+	0, 555, 0,
+  17, 500, 17,
+  17, 500, -17,
+  //0, 0, 500,
 ] );
 
 const triangleVertices3 = new Float32Array( [
-	0, 55,  0,  // v5
-  0, 1, 0,
-  -17.5,  0, 17.5, // v3
-	17.5,   0,  17.5, // v4
+	0, 555, 0, 
+  17, 500, -17 ,
+  -17, 500, -17,
+  //0, 0, 555,
 
 ] );
 
 const triangleVertices4 = new Float32Array( [
-	0, 55,  0,  // v5
-  0, 1, 0,
-  17.5,  0, -17.5, // v3
-	17.5,  0,  17.5, // v4
+	0, 555, 0,
+  -17, 500, -17
+  -17, 500, 17,
+  //0, 0, 555,
 ] );
 
 
@@ -165,33 +165,27 @@ function animate() {
   scene.add(triangleMesh2); 
   scene.add(triangleMesh3); 
   scene.add(triangleMesh4); 
-  
+  /*
   mesh.rotation.y += 0.01;
   mesh1.rotation.y += 0.01;
   mesh2.rotation.y += 0.01;
-  mesh3.rotation.y += 0.01;
+  mesh3.rotation.y += 0.01;*/
   
   
   triangleMesh.y += 0.01; 
   triangleMesh2.y += 0.01; 
   triangleMesh3.y += 0.01; 
   triangleMesh4.y += 0.01; 
-  
+ /* 
   triangleMesh.position.set( 2, 500, 0 );
   triangleMesh2.position.set( 2, 500, 0 );
   triangleMesh3.position.set( 2, 500, 0 );
-  triangleMesh4.position.set( 2, 500, 0 );
+  triangleMesh4.position.set( 2, 500, 0 );*/
 
   
 	renderer.render(scene, camera);
 }
 
-
-
-// Start animation loop
-var controls = new OrbitControls(camera, renderer.domElement);
-
-animate();
 
 
 // Start animation loop
