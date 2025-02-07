@@ -66,27 +66,27 @@ const vertices3 = new Float32Array( [
 
 ] );
 
-// square 1
 // itemSize = 3 because there are 3 values (components) per vertex
+
+// rectangle 1
 geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 const mesh = new THREE.Mesh( geometry, material );
 material.side = THREE.BackSize;
 
-//square 2
+// rectangle 2
 geometry1.setAttribute( 'position', new THREE.BufferAttribute( vertices1, 3 ) );
 const material1 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
 const mesh1 = new THREE.Mesh( geometry1, material1 );
 material1.side = THREE.BackSide;
 
-//square 3
+//rectangle 3
 geometry2.setAttribute( 'position', new THREE.BufferAttribute( vertices2, 3 ) );
 const material2 = new THREE.MeshBasicMaterial( { color: 0x00ff00} );
 const mesh2 = new THREE.Mesh( geometry2, material2 );
 material2.side = THREE.BackSide;
 
-//square 4
-// itemSize = 3 because there are 3 values (components) per vertex
+//rectangle 4
 geometry3.setAttribute( 'position', new THREE.BufferAttribute( vertices3, 3 ) );
 const material3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
 const mesh3 = new THREE.Mesh( geometry3, material3 );
@@ -101,7 +101,6 @@ const triangle2 = new THREE.BufferGeometry();
 const triangle3 = new THREE.BufferGeometry();
 const triangle4 = new THREE.BufferGeometry();
 
-// create a simple square shape. We duplicate the top left and bottom right
 // vertices because each vertex needs to appear once per triangle.
 const triangleVertices1 = new Float32Array( [
 	-17.5,  0, 17.5, // v3
@@ -133,23 +132,25 @@ const triangleVertices4 = new Float32Array( [
 ] );
 
 
-
-// itemSize = 3 because there are 3 values (components) per vertex
+// triangle 1
 triangle.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices1, 3 ) );
 const triangleMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 const triangleMesh = new THREE.Mesh( triangle, triangleMaterial );
 triangleMaterial.side = THREE.BackSide;
 
+// triangle 2
 triangle2.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices2, 3 ) );
 const triangleMaterial2 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 const triangleMesh2 = new THREE.Mesh( triangle2, triangleMaterial2 );
 triangleMaterial2.side = THREE.BackSide;
 
+// triangle 3
 triangle3.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices3, 3 ) );
 const triangleMaterial3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
 const triangleMesh3 = new THREE.Mesh( triangle3, triangleMaterial3 );
 triangleMaterial3.side = THREE.BackSide;
 
+// triangle 4
 triangle4.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices4, 3 ) );
 const triangleMaterial4 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
 const triangleMesh4 = new THREE.Mesh( triangle4, triangleMaterial4 );
@@ -185,6 +186,12 @@ function animate() {
 	renderer.render(scene, camera);
 }
 
+
+
+// Start animation loop
+var controls = new OrbitControls(camera, renderer.domElement);
+
+animate();
 
 
 // Start animation loop
