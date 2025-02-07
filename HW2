@@ -88,7 +88,7 @@ material2.side = THREE.BackSide;
 
 //rectangle 4
 geometry3.setAttribute( 'position', new THREE.BufferAttribute( vertices3, 3 ) );
-const material3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
+const material3 = new THREE.MeshBasicMaterial( { color: 0x0000Fff } );
 const mesh3 = new THREE.Mesh( geometry3, material3 );
 
 renderer.render(scene, camera);
@@ -131,28 +131,30 @@ const triangleVertices4 = new Float32Array( [
   //0, 0, 555,
 ] );
 
+let triangle1ColorRGB = "rgb(255, 255, 255)";
+let triangle2ColorRGB = "rgb(255, 255, 255)";
 
 // triangle 1
 triangle.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices1, 3 ) );
-const triangleMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+const triangleMaterial = new THREE.MeshBasicMaterial( { triangle1ColorRGB } );
 const triangleMesh = new THREE.Mesh( triangle, triangleMaterial );
 triangleMaterial.side = THREE.BackSide;
 
 // triangle 2
 triangle2.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices2, 3 ) );
-const triangleMaterial2 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const triangleMaterial2 = new THREE.MeshBasicMaterial( { triangle2ColorRGB } );
 const triangleMesh2 = new THREE.Mesh( triangle2, triangleMaterial2 );
 triangleMaterial2.side = THREE.BackSide;
 
 // triangle 3
 triangle3.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices3, 3 ) );
-const triangleMaterial3 = new THREE.MeshBasicMaterial( { color: 0xFfff00 } );
+const triangleMaterial3 = new THREE.MeshBasicMaterial( { color: 0xFfffff } );
 const triangleMesh3 = new THREE.Mesh( triangle3, triangleMaterial3 );
 triangleMaterial3.side = THREE.BackSide;
 
 // triangle 4
 triangle4.setAttribute( 'position', new THREE.BufferAttribute( triangleVertices4, 3 ) );
-const triangleMaterial4 = new THREE.MeshBasicMaterial( { color: 0xff00ff } );
+const triangleMaterial4 = new THREE.MeshBasicMaterial( { color: 0xFfffff } );
 const triangleMesh4 = new THREE.Mesh( triangle4, triangleMaterial4 );
 
 function animate() {
@@ -176,7 +178,7 @@ function animate() {
   triangleMesh2.y += 0.01; 
   triangleMesh3.y += 0.01; 
   triangleMesh4.y += 0.01; 
- /* 
+ /*
   triangleMesh.position.set( 2, 500, 0 );
   triangleMesh2.position.set( 2, 500, 0 );
   triangleMesh3.position.set( 2, 500, 0 );
