@@ -1,0 +1,20 @@
+// Quadtraic Formula: -B +- sqrt(B^2 - 4AC) / 2A
+function Quadratic (A, B, C)
+{
+		// solve whats underneath the square root
+		let N = B * B - 4 * A * C; 
+    
+    // solve the rest, depending on if B is negative or position
+    if (N > 0)
+    {
+    	let root1 = (-B + Math.sqrt(N)) / (2 * A); 
+      let root2 = (-B - Math.sqrt(N)) / (2 * A); 
+      return `The roots are: ${root1} and ${root2}`;
+    }
+    else
+    {
+    	return `The roots are negative.`;
+    }
+   
+    console.log(solveQuadratic(A, B, C));
+}
